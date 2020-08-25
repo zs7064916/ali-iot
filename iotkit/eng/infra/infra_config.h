@@ -1,6 +1,28 @@
 #ifndef _INFRA_CONFIG_H_
 #define _INFRA_CONFIG_H_
 
+#define PLATFORM_HAS_STDINT
+#define PLATFORM_HAS_DYNMEM
+#define PLATFORM_HAS_OS
+#define INFRA_STRING
+#define INFRA_NET
+#define INFRA_LIST
+//#define INFRA_LOG_NETWORK_PAYLOAD
+// #define INFRA_LOG
+#define INFRA_TIMER
+#define INFRA_SHA256
+#define INFRA_REPORT
+#define INFRA_COMPAT
+#define ATHOST_MQTT_REPORT_DISBALED
+#define DEV_SIGN
+#define MQTT_COMM_ENABLED
+#define MQTT_DEFAULT_IMPL
+#define MQTT_DIRECT
+//#define MQTT_PRE_AUTH
+//#define ASYNC_PROTOCOL_STACK
+#define DEVICE_MODEL_CLASSIC
+//#define SUPPORT_TLS
+#if 0
 #define PLATFORM_HAS_MBEDTLS
 #define PLATFORM_HAS_STDINT
 #define PLATFORM_HAS_DYNMEM
@@ -27,5 +49,5 @@
 // #define MQTT_PRE_AUTH
 #define MQTT_AUTO_SUBSCRIBE
 // #define SUPPORT_TLS
-
+#endif
 #endif

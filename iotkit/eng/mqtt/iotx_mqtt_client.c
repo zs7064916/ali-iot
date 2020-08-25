@@ -1875,7 +1875,7 @@ static void iotx_mc_keepalive(iotx_mc_client_t *pClient)
                                     pClient->reconnect_param.reconnect_time_interval_ms);
 
             pClient->ipstack.disconnect(&pClient->ipstack);
-            iotx_mc_set_client_state(pClient, IOTX_MC_STATE_DISCONNECTED_RECONNECTING);
+            iotx_mc_set_client_state(pClient, IOTX_MC_STATE_DISCONNECTED);
             break;
         }
 
@@ -2800,6 +2800,7 @@ int wrapper_mqtt_release(void **c)
 
 int wrapper_mqtt_yield(void *client, int timeout_ms)
 {
+    int ret = IOTX_MC_STATE_CONNECTED;
     iotx_mc_client_t *pClient = (iotx_mc_client_t *)client;
 
     if (pClient == NULL) {
@@ -2812,6 +2813,12 @@ int wrapper_mqtt_yield(void *client, int timeout_ms)
     }
     if (timeout_ms == 0) {
         timeout_ms = 10;
+    }
+
+    /*如果已经断开连接*/
+    ret = iotx_mc_get_client_state(pClient);
+    if (ret != IOTX_MC_STATE_CONNECTED) {
+        return MQTT_NETWORK_ERROR;
     }
 
     HAL_MutexLock(pClient->lock_yield);
